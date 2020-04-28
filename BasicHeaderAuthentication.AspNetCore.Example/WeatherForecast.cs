@@ -4,6 +4,7 @@ namespace HeaderAuthentication.AspNetCore.Example
 {
     public class WeatherForecast
     {
+        public string User { get; set; }
         public DateTime Date { get; set; }
 
         public int TemperatureC { get; set; }
