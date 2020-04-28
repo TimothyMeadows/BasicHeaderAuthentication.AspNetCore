@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HeaderAuthentication.AspNetCore.Example.Authentication
 {
-    public class HeaderAuthentication : IHeaderAuthenticate
+    public class HeaderAuthenticate : IHeaderAuthenticate
     {
         public async Task<ClaimsPrincipal> SignIn(string value)
         {

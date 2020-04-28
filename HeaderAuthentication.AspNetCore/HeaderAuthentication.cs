@@ -33,7 +33,12 @@ namespace HeaderAuthentication.AspNetCore
             if (claim == null)
                 return Task.FromResult(AuthenticateResult.Fail("Cannot validate authentication header."));
 
-            claim.AddIdentity(new ClaimsIdentity(HeaderAuthenticationOptions.DefaultScheme));
+            if (!claim.Identities.Any())
+                claim.AddIdentity(new ClaimsIdentity(new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, value)
+                }, HeaderAuthenticationOptions.DefaultScheme));
+
             return Task.FromResult(AuthenticateResult.Success(new AuthenticationTicket(claim, Options.Scheme)));
         }
     }

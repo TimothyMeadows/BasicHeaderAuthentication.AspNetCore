@@ -37,7 +37,7 @@ namespace HeaderAuthentication.AspNetCore.Example
                 .AddHeaderAuthentication(options =>
                 {
                     options.HeaderKey = "X-AuthKey";
-                    options.Authentication = new Authentication.HeaderAuthentication();
+                    options.Authentication = new HeaderAuthenticate();
                 });
 
             services.AddAuthorization(options =>
