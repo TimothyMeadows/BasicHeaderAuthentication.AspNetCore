@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BasicHeaderAuthentication.AspNetCore;
 using HeaderAuthentication.AspNetCore.Example.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -31,18 +32,18 @@ namespace HeaderAuthentication.AspNetCore.Example
 
             services.AddAuthentication(options =>
                 {
-                    options.DefaultAuthenticateScheme = HeaderAuthenticationOptions.DefaultScheme;
-                    options.DefaultChallengeScheme = HeaderAuthenticationOptions.DefaultScheme;
+                    options.DefaultAuthenticateScheme = BasicHeaderAuthenticationOptions.DefaultScheme;
+                    options.DefaultChallengeScheme = BasicHeaderAuthenticationOptions.DefaultScheme;
                 })
-                .AddHeaderAuthentication(options =>
+                .AddBasicHeaderAuthentication(options =>
                 {
                     options.HeaderKey = "X-AuthKey";
-                    options.Authenticate = new HeaderAuthenticate();
+                    options.Authenticate = new BasicHeaderAuthenticate();
                 });
 
             services.AddAuthorization(options =>
             {
-                options.DefaultPolicy = new AuthorizationPolicyBuilder(HeaderAuthenticationOptions.DefaultScheme).RequireAuthenticatedUser().Build();
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(BasicHeaderAuthenticationOptions.DefaultScheme).RequireAuthenticatedUser().Build();
             });
         }
 

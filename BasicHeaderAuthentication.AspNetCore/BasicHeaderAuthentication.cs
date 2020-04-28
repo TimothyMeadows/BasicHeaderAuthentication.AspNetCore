@@ -9,11 +9,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Task = System.Threading.Tasks.Task;
 
-namespace HeaderAuthentication.AspNetCore
+namespace BasicHeaderAuthentication.AspNetCore
 {
-    public class HeaderAuthentication : AuthenticationHandler<HeaderAuthenticationOptions>
+    public class BasicHeaderAuthentication : AuthenticationHandler<BasicHeaderAuthenticationOptions>
     {
-        public HeaderAuthentication(IOptionsMonitor<HeaderAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
+        public BasicHeaderAuthentication(IOptionsMonitor<BasicHeaderAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
         {
             // ...
         }
@@ -37,7 +37,7 @@ namespace HeaderAuthentication.AspNetCore
                 claim.AddIdentity(new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, value)
-                }, HeaderAuthenticationOptions.DefaultScheme));
+                }, BasicHeaderAuthenticationOptions.DefaultScheme));
 
             return Task.FromResult(AuthenticateResult.Success(new AuthenticationTicket(claim, Options.Scheme)));
         }

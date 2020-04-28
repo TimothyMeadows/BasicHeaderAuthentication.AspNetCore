@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HeaderAuthentication.AspNetCore\HeaderAuthentication.AspNetCore.csproj" />
+    <ProjectReference Include="..\BasicHeaderAuthentication.AspNetCore\BasicHeaderAuthentication.AspNetCore.csproj" />
   </ItemGroup>
 
 
