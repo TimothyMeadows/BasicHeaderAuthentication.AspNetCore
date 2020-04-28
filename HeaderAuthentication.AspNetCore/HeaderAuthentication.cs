@@ -23,13 +23,13 @@ namespace HeaderAuthentication.AspNetCore
             if (string.IsNullOrEmpty(Options.HeaderKey))
                 throw new ArgumentNullException("Options.HeaderKey", "HeaderAuthenticationOptions.HeaderKey can't be null, or empty. Please read the docs and configure a header key for your application.");
 
-            if (Options.Authentication == null)
-                throw new ArgumentNullException("Options.Authentication", "HeaderAuthenticationOptions.Authentication can't be null. Please read the docs and configure a authentication method for your application.");
+            if (Options.Authenticate == null)
+                throw new ArgumentNullException("Options.Authenticate", "HeaderAuthenticationOptions.Authenticate can't be null. Please read the docs and configure a authentication method for your application.");
 
             if (!Request.Headers.TryGetValue(Options.HeaderKey, out var value))
                 return Task.FromResult(AuthenticateResult.Fail("Cannot find authentication header in request."));
 
-            var claim = Options.Authentication.SignIn(value).Result;
+            var claim = Options.Authenticate.SignIn(value).Result;
             if (claim == null)
                 return Task.FromResult(AuthenticateResult.Fail("Cannot validate authentication header."));
 

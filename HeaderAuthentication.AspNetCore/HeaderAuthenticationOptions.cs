@@ -8,6 +8,6 @@ namespace HeaderAuthentication.AspNetCore
         public const string DefaultScheme = "Header";
         public string Scheme => DefaultScheme;
         public string HeaderKey { get; set; }
-        public IHeaderAuthenticate Authentication { get; set; }
+        public IHeaderAuthenticate Authenticate { get; set; }
     }
 }
