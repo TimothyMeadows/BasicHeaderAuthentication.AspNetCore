@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace BasicHeaderAuthentication.AspNetCore
 {
-    public interface IBasicHeaderAuthenticate
+    public interface IBasicHeaderAuthenticator
     {
         public Task<ClaimsPrincipal> SignIn(string value);
     }

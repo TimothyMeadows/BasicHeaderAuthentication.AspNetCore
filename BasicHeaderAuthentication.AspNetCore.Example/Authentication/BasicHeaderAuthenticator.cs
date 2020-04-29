@@ -7,7 +7,7 @@ using BasicHeaderAuthentication.AspNetCore;
 
 namespace HeaderAuthentication.AspNetCore.Example.Authentication
 {
-    public class BasicHeaderAuthenticate : IBasicHeaderAuthenticate
+    public class BasicHeaderAuthenticator : IBasicHeaderAuthenticator
     {
         public async Task<ClaimsPrincipal> SignIn(string value)
         {

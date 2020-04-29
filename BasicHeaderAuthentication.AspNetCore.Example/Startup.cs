@@ -30,6 +30,7 @@ namespace HeaderAuthentication.AspNetCore.Example
         {
             services.AddControllers();
 
+            services.AddTransient<IBasicHeaderAuthenticator, BasicHeaderAuthenticator>();
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = BasicHeaderAuthenticationOptions.DefaultScheme;
@@ -38,7 +39,6 @@ namespace HeaderAuthentication.AspNetCore.Example
                 .AddBasicHeaderAuthentication(options =>
                 {
                     options.HeaderKey = "X-AuthKey";
-                    options.Authenticate = new BasicHeaderAuthenticate();
                 });
 
             services.AddAuthorization(options =>
