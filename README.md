@@ -1,5 +1,7 @@
 # Basic Header Authentication
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![nuget](https://img.shields.io/nuget/v/BasicHeaderAuthentication.AspNetCore.svg)](https://www.nuget.org/packages/BasicHeaderAuthentication.AspNetCore/)
+
 This package is designed to provide basic header authentication to .NET core 2.x / 3x. This is intended for usage with API's where a single header can be used as a "key" that has been provided to a consumer.
 
 #### *Warning: This header is transmitted in plain-text. This means it's subject to man in the middle attacks. If you are securing important information such as medical data, credit cards, or personal information. You should consider a more secure method for authentication. If you can't. Please look into adding a method of forward secrecy to your authenticator code in your application.*
