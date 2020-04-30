@@ -16,7 +16,7 @@ namespace BasicHeaderAuthentication.AspNetCore
     {
         private readonly IBasicHeaderAuthenticator _authenticator;
 
-        public BasicHeaderAuthentication(IOptionsMonitor<BasicHeaderAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IServiceProvider provider) : base(options, logger, encoder, clock)
+        public BasicHeaderAuthentication(IOptionsMonitor<BasicHeaderAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IServiceCollection collection, IServiceProvider provider) : base(options, logger, encoder, clock)
         {
             // This is so we don't create any injection errors if IBasicHeaderAuthenticator does no exist so that a more helpful message can be created.
             var scope = provider.CreateScope();
@@ -29,10 +29,11 @@ namespace BasicHeaderAuthentication.AspNetCore
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            if (string.IsNullOrEmpty(Options.HeaderKey))
-                throw new ArgumentNullException("HeaderAuthenticationOptions.HeaderKey", "HeaderKey can't be null, or empty. Please read the docs and configure a header key for your application.");
+            var headerKey = Options.HeaderKey;
+            if (string.IsNullOrEmpty(headerKey))
+                headerKey = "X-AuthKey";
 
-            if (!Request.Headers.TryGetValue(Options.HeaderKey, out var value))
+            if (!Request.Headers.TryGetValue(headerKey, out var value))
                 return Task.FromResult(AuthenticateResult.Fail("Can't find authentication header in request."));
 
             var claim = _authenticator.SignIn(value).Result;
