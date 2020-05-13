@@ -16,7 +16,7 @@ namespace BasicHeaderAuthentication.AspNetCore
     {
         private readonly IBasicHeaderAuthenticator _authenticator;
 
-        public BasicHeaderAuthentication(IOptionsMonitor<BasicHeaderAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IServiceCollection collection, IServiceProvider provider) : base(options, logger, encoder, clock)
+        public BasicHeaderAuthentication(IOptionsMonitor<BasicHeaderAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IServiceProvider provider) : base(options, logger, encoder, clock)
         {
             // This is so we don't create any injection errors if IBasicHeaderAuthenticator does no exist so that a more helpful message can be created.
             var scope = provider.CreateScope();
